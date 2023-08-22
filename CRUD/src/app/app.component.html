@@ -1,0 +1,11 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>CRUD Property Management</div>
+  <div style="display: flex;gap: 5px;">
+    <button mat-raised-button (click)="homePage()">Home</button>
+    <button mat-raised-button (click)="aboutPage()">About</button>
+    <button mat-raised-button (click)="openAddNewForm()">Services</button>
+    <button mat-raised-button (click)="landingPage()">List Property</button>
+    <button mat-raised-button (click)="login()">Log In</button>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

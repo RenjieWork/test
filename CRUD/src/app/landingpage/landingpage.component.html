@@ -1,0 +1,39 @@
+
+<!-- <h1>Material Baseline</h1> -->
+<div style="height: 95vh; background-color:#162036;">
+<form [formGroup]="filterForm">
+    <div class = "padding" style="gap: 10px;display:flex;flex-wrap:wrap;background-color:#d1e9ff;">
+        <div>
+            <span class="p-input-icon-left"><i class="pi pi-search"></i>
+            <input type="text" placeholder="Search for City, Neighborhood, Zip, County" pInputText formControlName="address" />
+            </span>
+        </div>
+        <div><p-dropdown formControlName="numBedRoom" [options]="numberOfBedroomOption" optionLabel="name" optionValue="code"></p-dropdown></div>
+        <div><p-dropdown formControlName="numBathRoom" [options]="numberOfBathroomOption" optionLabel="name" optionValue="code"></p-dropdown></div>
+        <div><input pInputText pKeyFilter="int" formControlName="squareFeetMin" placeholder="Enter Min Sqft" /></div>
+        <div><input pInputText pKeyFilter="int" formControlName="squareFeetMax" placeholder="Enter Max Sqft" /></div>
+        <div><input pInputText pKeyFilter="int" formControlName="priceMin" placeholder="Enter Min Price" /></div>
+        <div><input pInputText pKeyFilter="int" formControlName="priceMax" placeholder="Enter Max Price" /></div>
+        <div><p-button icon="pi pi-search" styleClass="p-button-success" (click)="this.filter()"></p-button></div>
+        <div><p-button label="Add New Property" styleClass="p-button-help" (click)="this.goPropertyDetail(null)"></p-button></div>
+    </div>
+</form>
+
+<div class="d-flex" style="background-color: #162036;">
+    <div *ngFor="let product of products">
+        <br>
+        <div (click)="this.goPropertyDetail(product)" style="background-color: #27304C;width:350px;padding: 15px;border-radius: 18px; "onmouseover="this.style.background='#6289A9';"onmouseout="this.style.background='#27304C';">
+            <!-- <button style="top: 0">Submit</button> -->
+            <img style="width:320px;height:240px;" [src]="product.image"/>
+            <h1>{{product.price |currency:'USD'}}</h1>
+            <span>
+              {{product.bedroom}} bd | {{product.bathroom}} ba | {{product.squarefeet}} sqft
+            </span>
+            <span>
+                {{product.address}}
+            </span>
+        <div>
+    </div>
+</div>
+</div>
+
