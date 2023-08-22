@@ -17,8 +17,6 @@ export class AddNewFormComponent implements OnInit{
     data: any;
     chartOptions: any;
     LoanProgram: any;
-    value3: number = 20;
-    value!: number;
     loanTermYears:number[]=[];
     paymentOptions: any;
     Bedrooms: number = 0;
@@ -33,7 +31,7 @@ export class AddNewFormComponent implements OnInit{
     totalInterestPay:any;
     totalPayment:any;
     yourMonthlyPayment:any;
-
+    value: number = 50;
 
     constructor(private _propertyService:PropertyServicesService,
       @Inject(MAT_DIALOG_DATA) public propertyData:any,
@@ -49,15 +47,25 @@ export class AddNewFormComponent implements OnInit{
       this.propertyInfoForm = new FormGroup({
         image: new FormControl('',[Validators.required]),
         address: new FormControl('',[Validators.required]),
-        price: new FormControl('',[Validators.required]),
-        squarefeet: new FormControl('',[Validators.required]),
-        bedroom: new FormControl('',[Validators.required]),
-        bathroom: new FormControl('',[Validators.required]),
-        downpayment:new FormControl('',[Validators.required]),
-        loanamount:new FormControl('',[Validators.required]),
-        interestrate:new FormControl('',[Validators.required]),
-        loanterm:new FormControl('',[Validators.required]),
+        price: new FormControl('',[Validators.required,Validators.min(0)]),
+        squarefeet: new FormControl('',[Validators.required,Validators.min(0)]),
+        bedroom: new FormControl('',[Validators.required,Validators.min(0)]),
+        bathroom: new FormControl('',[Validators.required,Validators.min(0)]),
+        downpayment:new FormControl('',[Validators.required,Validators.min(0)]),
+        loanamount:new FormControl('',[Validators.required,Validators.min(0)]),
+        interestrate:new FormControl('',[Validators.required,Validators.min(0)]),
+        loanterm:new FormControl('',[Validators.required,Validators.min(0)]),
       })
+    }
+    
+    downPaymentChange(){
+      this.propertyInfoForm.get('loanamount').setValue(this.propertyInfoForm.get('price').value-this.propertyInfoForm.get('downpayment').value);
+      this.Amortization_Chart();
+    }
+
+    loanAmountChange(){
+      this.propertyInfoForm.get('downpayment').setValue(this.propertyInfoForm.get('price').value-this.propertyInfoForm.get('loanamount').value);
+      this.Amortization_Chart();
     }
 
     DoughnutChartInit(){

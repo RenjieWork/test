@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class = "d-flex padding">
-                <div><h2>Square Feet</h2> <p-inputNumber formControlName="squarefeet"> </p-inputNumber>
+                <div><h2>Square Feet</h2> <p-inputNumber formControlName="squarefeet" [min]="0"> </p-inputNumber>
                     <div *ngIf="propertyInfoForm.get('squarefeet').invalid && propertyInfoForm.get('squarefeet').touched"
                     class="p-error">Field is required</div>
                 </div>
@@ -54,11 +54,11 @@
     <div class="row" style="background-color: #27304C;">
         <div class="col-6">
             <div class="d-flex center padding">
-                <div><h2>Down Payment</h2> <p-inputNumber formControlName="downpayment"></p-inputNumber>
+                <div><h2>Down Payment</h2> <p-inputNumber formControlName="downpayment" (onInput)="downPaymentChange()" [min]="0"></p-inputNumber>
                     <div *ngIf="propertyInfoForm.get('downpayment').invalid && propertyInfoForm.get('downpayment').touched"
                     class="p-error">Field is required</div>
                 </div>
-                <div><h2>Loan Amount</h2> <p-inputNumber formControlName="loanamount"></p-inputNumber>
+                <div><h2>Loan Amount</h2> <p-inputNumber formControlName="loanamount" (onInput)="loanAmountChange()" [min]="0"></p-inputNumber>
                     <div *ngIf="propertyInfoForm.get('loanamount').invalid && propertyInfoForm.get('loanamount').touched"
                     class="p-error">Field is required</div>
                 </div>
