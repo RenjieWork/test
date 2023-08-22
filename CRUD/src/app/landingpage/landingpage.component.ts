@@ -72,7 +72,7 @@ export class LandingpageComponent implements OnInit{
     this.getPropertyList();
     setTimeout(() => {
       this.filterProperty()
-  }, 100);
+  }, 200);
   }
 
   filterProperty(){
